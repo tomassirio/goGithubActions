@@ -39,7 +39,7 @@ jobs:
             go run main.go
         
         - name: Run Project B
-            if: ${{needs.project-a-or-project-b.outputs.output1}} == 1
-            run: |
-              cd ./mainRepository/projectB &&
-              go run main.go
+          if: ${{needs.project-a-or-project-b.outputs.output1}} == 1
+          run: |
+            cd ./mainRepository/projectB &&
+            go run main.go
