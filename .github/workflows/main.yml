@@ -20,18 +20,17 @@ jobs:
           id: main
           run: |
             cd ./mainRepository &&
-            go run main.go &&
-            OUTPUT=$(exif ... | tail -1) &&
+            OUTPUT=$(go run main.go | tail -1) &&
             echo "::set-output name=OUTPUT::$OUTPUT"
     
         - name: Run Project A
-          if: ${{steps.main.outputs.OUTPUT}} == 0
+          if: steps.main.outputs.OUTPUT == 0
           run: |
             cd ./mainRepository/projectA &&
             go run main.go
         
         - name: Run Project B
-          if: ${{steps.main.outputs.OUTPUT}} == 1
+          if: steps.main.outputs.OUTPUT == 1
           run: |
             cd ./mainRepository/projectB &&
             go run main.go
